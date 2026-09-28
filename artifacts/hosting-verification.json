@@ -1,39 +1,16 @@
 {
   "url": "https://source-dossier-genlayer-2qc.pages.dev/",
+  "deployment_url": "https://8a93e7e2.source-dossier-genlayer-2qc.pages.dev/",
   "status": 200,
   "assets": [
-    {
-      "path": "/_next/static/css/index.C2MwiteR.css",
-      "status": 200
-    },
-    {
-      "path": "/_next/static/chunks/index-Y9X11FRZ.js",
-      "status": 200
-    },
-    {
-      "path": "/_next/static/chunks/rolldown-runtime-C60lm6uB.js",
-      "status": 200
-    },
-    {
-      "path": "/_next/static/chunks/framework-D_rUT4EX.js",
-      "status": 200
-    },
-    {
-      "path": "/_next/static/chunks/layout-segment-context-DjFRIf9r.js",
-      "status": 200
-    },
-    {
-      "path": "/_next/static/chunks/page-GmK3Jk1b.js",
-      "status": 200
-    },
-    {
-      "path": "/_next/static/chunks/utils-CME0TaWh.js",
-      "status": 200
-    },
-    {
-      "path": "/_next/static/chunks/localBatchGatewayRequest-C1eIdMJn.js",
-      "status": 200
-    }
+    {"path":"/_next/static/css/index.C2MwiteR.css","status":200},
+    {"path":"/_next/static/chunks/index-Y9X11FRZ.js","status":200},
+    {"path":"/_next/static/chunks/rolldown-runtime-C60lm6uB.js","status":200},
+    {"path":"/_next/static/chunks/framework-D_rUT4EX.js","status":200},
+    {"path":"/_next/static/chunks/layout-segment-context-DjFRIf9r.js","status":200},
+    {"path":"/_next/static/chunks/page-GmK3Jk1b.js","status":200},
+    {"path":"/_next/static/chunks/utils-CME0TaWh.js","status":200},
+    {"path":"/_next/static/chunks/localBatchGatewayRequest-C1eIdMJn.js","status":200}
   ],
-  "checked_at": "2026-09-26T09:45:00.000Z"
+  "checked_at": "2026-09-28T17:30:00.000Z"
 }
