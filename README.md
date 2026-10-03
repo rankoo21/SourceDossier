@@ -12,13 +12,18 @@ The caller supplies URLs, never copied evidence text. Every validator performs t
 2. `npm run dev`
 3. Open the local URL and connect MetaMask to GenLayer Studionet.
 
-Contract source: `contracts/source_dossier.py`. Tests cover URL and hostname rules, duplicate IDs, malformed model output, changed source bytes, and validator disagreement. Public deployment evidence is in `artifacts/`.
+Contract source: `contracts/source_dossier.py`. Tests cover URL and hostname rules, duplicate IDs, malformed model output, changed source bytes, validator disagreement, and the recent-dossier feed. Public deployment evidence is in `artifacts/`.
 
 ## Verified deployment
 
 - Network: GenLayer Studionet
-- Contract: `0x5847B68155F2a6Be6Df31A3e2a21492E907D6F5D`
+- Contract: `0x2D6e5573B087101fA4D748766f31b132C03795d3`
 - Deployment transaction: `0x5728cc7a4eaab77d68c41b1e2b9cc78cfde15ffb66ec5c843532f92d27f8d6ac`
 - Live test transaction: `0x88050c8224cc733037b5c1c9012214642c0bfc78b68dfc6a7b2ce21bf2ae1887`
+- Website: `https://source-dossier-genlayer-2qc.pages.dev/`
 
 No private keys or secrets are stored in this repository.
+
+## Steward remediation record
+
+The current branch includes a post-review verification commit and the reproducible evidence in `artifacts/steward-remediation.md`. The contract tests and deployment records are kept alongside the source so reviewers can distinguish the corrected revision from the original submission.
