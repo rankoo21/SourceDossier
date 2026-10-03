@@ -36,7 +36,8 @@ def assess(claim,urls):
  return json.loads(gl.vm.run_nondet_unsafe(run,validator))
 class SourceDossier(gl.Contract):
  records:TreeMap[str,str]
- def __init__(self):pass
+ recent_ids:str
+ def __init__(self):self.recent_ids="[]"
  @gl.public.write
  def resolve(self,dossier_id:str,claim:str,source_a:str,source_b:str)->None:
   rid=ident(dossier_id)
@@ -46,5 +47,14 @@ class SourceDossier(gl.Contract):
   a,ha=url(source_a);b,hb=url(source_b)
   if ha==hb:raise gl.vm.UserError("distinct source hostnames required")
   out=assess(claim,[a,b]);self.records[rid]=enc({"id":rid,"creator":str(gl.message.sender_address).lower(),"claim":claim,"sources":[{"url":a,"host":ha,"digest":out["digests"][0],"code":out["codes"][0]},{"url":b,"host":hb,"digest":out["digests"][1],"code":out["codes"][1]}],"verdict":verdict(out["codes"])})
+  ids=json.loads(self.recent_ids);ids=[x for x in ids if x!=rid];ids.append(rid);self.recent_ids=enc(ids[-25:])
  @gl.public.view
  def get_dossier(self,dossier_id:str)->str:return self.records.get(ident(dossier_id),"{}")
+ @gl.public.view
+ def get_recent_dossiers(self,limit:int=10)->str:
+  limit=max(1,min(int(limit),25));ids=list(reversed(json.loads(self.recent_ids)))[:limit];out=[]
+  for rid in ids:
+   raw=self.records.get(rid,"")
+   if raw:
+    r=json.loads(raw);out.append({"id":r["id"],"creator":r["creator"],"verdict":r["verdict"],"claim":r["claim"],"sources":[{"host":s["host"],"code":s["code"]} for s in r["sources"]]})
+  return enc(out)
