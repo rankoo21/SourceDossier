@@ -5,7 +5,12 @@ def env():return load('source_dossier.py','SourceDossier')
 def queue(e,other=None):
  e[4].extend(['source alpha confirms release','source beta confirms release','source alpha confirms release','source beta confirms release']);v={'codes':['AGREES','AGREES']};e[3].extend([json.dumps(v),json.dumps(other or v)])
 def test_full_attributed_path(env):
- queue(env);env[1].resolve('DOS-1','The package release is available and documented.','https://a.example/release','https://b.example/release');r=json.loads(env[1].get_dossier('dos-1'));assert r['verdict']=='SUPPORTED' and len(r['sources'])==2 and len(r['sources'][0]['digest'])==64
+ queue(env);env[1].resolve('DOS-1','The package release is available and documented.','https://a.example/release','https://b.example/release');r=json.loads(env[1].get_dossier('dos-1'));assert r['verdict']=='SUPPORTED' and len(r['sources'])==2 and len(r['sources'][0]['digest'])==64;recent=json.loads(env[1].get_recent_dossiers(10));assert recent[0]['id']=='DOS-1' and recent[0]['verdict']=='SUPPORTED'
+
+def test_recent_feed_contains_multiple_dossiers(env):
+ queue(env);env[1].resolve('DOS-1','The package release is available and documented.','https://a.example/r','https://b.example/r')
+ queue(env);env[1].resolve('DOS-2','The security advisory contradicts the release statement.','https://c.example/r','https://d.example/r')
+ recent=json.loads(env[1].get_recent_dossiers(2));assert [x['id'] for x in recent]==['DOS-2','DOS-1'] and all('sources' in x for x in recent)
 def test_distinct_hosts_and_clean_https(env):
  for a,b in [('https://x.example/a','https://x.example/b'),('http://a.example/a','https://b.example/b'),('https://u:p@a.example/a','https://b.example/b')]:
   with pytest.raises(UserError):env[1].resolve('DOS-1','A sufficiently detailed claim for evaluation.',a,b)
